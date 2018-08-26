@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>son</title>
+</head>
+<body>
+
+
+<div id="son">
+    <span>Id: </span><input type="text" id="sonId" name="sonId"/>
+    <span>name: </span><input type="text" name="sonName"/>
+</div>
+
+<button onclick="skip()">去孙节点</button>
+
+<script src="/js/jquery-3.3.1.min.js"></script>
+<script src="/js/ajaxData.js"></script>
+<script src="/js/urlParam.js"></script>
+
+<script>
+    var fatherId = urlParam.paramValues("fatherId")[0];
+
+
+    $("#son").mouseup(function () {
+        var data = ajaxData.getInputDataById("#son");
+        data.fatherId = fatherId;
+        console.log(data);
+        $.ajax({
+            url: "/son",
+            type: "POST",
+            data: JSON.stringify(data),
+            dataType: "json",
+            contentType: "application/json",
+            success: function () {
+
+            }
+
+        });
+    });
+
+
+    function skip() {
+        var sonId = document.getElementById("sonId").value;
+        location.href = "/grandson?fatherId=" + sonId;
+    }
+
+
+</script>
+
+</body>
+</html>

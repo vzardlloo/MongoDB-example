@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>grandson</title>
+</head>
+<body>
+
+<div id="grandson">
+    <span>Id: </span><input type="text" name="grandsonId"/>
+    <span>name: </span><input type="text" name="grandsonName"/>
+</div>
+
+
+<script src="/js/jquery-3.3.1.min.js"></script>
+<script src="/js/ajaxData.js"></script>
+<script src="/js/urlParam.js"></script>
+
+<script>
+    var fatherId = urlParam.paramValues("fatherId")[0];
+
+
+    $("#grandson").mouseup(function () {
+        var data = ajaxData.getInputDataById("#grandson");
+        data.fatherId = fatherId;
+        console.log(data);
+        $.ajax({
+            url: "/grandson",
+            type: "POST",
+            data: JSON.stringify(data),
+            dataType: "json",
+            contentType: "application/json",
+            success: function () {
+
+            }
+
+        });
+    });
+
+</script>
+
+</body>
+</html>

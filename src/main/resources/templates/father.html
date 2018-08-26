@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Father</title>
+</head>
+<body>
+<div id="father">
+    <input type="hidden" name="fatherId" value="3"/>
+    <span>name: </span><input type="text" name="fatherName"/>
+</div>
+
+<a href="/son?fatherId=3">去子节点</a>
+
+<script src="/js/jquery-3.3.1.min.js"></script>
+<script src="/js/ajaxData.js"></script>
+<script>
+
+    $("#father").mouseup(function () {
+        var data = ajaxData.getInputDataById("#father");
+        console.log(data);
+        $.ajax({
+            url: "/father",
+            type: "POST",
+            data: JSON.stringify(data),
+            dataType: "json",
+            contentType: "application/json",
+            success: function () {
+                console.log("add success!");
+            }
+
+
+        })
+
+
+    });
+
+
+</script>
+
+
+</body>
+</html>
